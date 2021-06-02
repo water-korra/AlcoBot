@@ -20,4 +20,7 @@
 ![ex2](https://user-images.githubusercontent.com/72153796/120514455-f8875080-c3d5-11eb-963d-26dc16f4c733.png)
 
 ## Contributors
+
+***
+
 Sedush Mykhaylo
