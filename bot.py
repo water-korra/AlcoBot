@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-token = '1833113848:AAFEJ2jhJn1nBw2D-pg4Wo61IQSJZtjVwek'
+token = 'XXXXXXXXXXXX'
 url = 'https://api.telegram.org/bot{}/'.format(token)
 
 
@@ -84,6 +84,10 @@ def main():
     send_message(chat_id, 'calculating')
     time.sleep(3)
     send_message(chat_id, 'promile is {}'.format(promile))
+    time.sleep(1)
+    send_message(
+        chat_id, 'По закону Украины , водить машину можно , если в крови\
+             содержится +  до 0.2 промиле алкоголя ')
 
     if promile < 0.2:
         send_message(chat_id, "Садитесь за руль , но будьте аккуратны")
@@ -93,8 +97,10 @@ def main():
 
 while True:
     send_message(
-        chat_id, 'Привет , бот показывает можно ли вам садиться за руль.Просто введите свои парметры')
-    send_keyboard(chat_id, 'choose', keyboard_init)
+        chat_id, 'Привет , бот показывает можно ли вам садиться за руль. \
+            Просто введите свои парметры')
+    send_keyboard(
+        chat_id, 'Выберете start , если хотите начать работу', keyboard_init)
     time.sleep(2)
     last_chat_text = get_last_message(last_update(get_updates_json(url)))
     print(last_chat_text)
@@ -104,4 +110,4 @@ while True:
     else:
         send_message(
             chat_id, "You can contact developer on github if smth not working")
-
+    break
