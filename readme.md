@@ -1,5 +1,7 @@
-# ****Telegram bot на python****
-    Телеграб алко-бот , который определяет , можно ли вам садиться за руль или нет
+# ****Python telegram bot****
+    
 ***
+#### What can this bot do?
+#This bot can check whether you are drunk enough or not to drive a car
 
- #### Не было использовано сторонних враперов / библиотек. Только встроенные requests, time.
+ #### Examples of usage:
