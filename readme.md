@@ -16,10 +16,6 @@
  
 ## Buttons
 
-![overall](https://user-images.githubusercontent.com/72153796/120715654-93af2180-c4cd-11eb-9f7c-c58720372e15.png)
-
-
-***
 
 ![state](https://user-images.githubusercontent.com/72153796/120715669-99a50280-c4cd-11eb-9a1b-acb649c25dd9.png)
 
