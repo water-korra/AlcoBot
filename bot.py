@@ -1,25 +1,57 @@
 import requests
 import json
 import time
+import threading
 
-token = 'xxxxxx'
+
+token = json.load(open("settings.json", "r"))["TOKEN"]
 url = 'https://api.telegram.org/bot{}/'.format(token)
 
 
-def get_updates_json(request):
-    response = requests.get(request + 'getUpdates')
+def get_updates_json(request, update_id=None):
+    if update_id != None:
+        response = requests.get(request + 'getUpdates?allowed_updates=message&offset='+str(update_id))
+    else:
+        response = requests.get(request + 'getUpdates?allowed_updates=message')
     return response.json()
 
 
 def last_update(data):
-    results = data['result']
-    total_updates = len(results) - 1
-    return results[total_updates]
+    if 'result' in data.keys():
+        results = data['result']
+        return results[-1]
+    # else:
+        
 
+
+    
+    
 
 def get_chat_id(update):
     chat_id = update['message']['chat']['id']
     return chat_id
+
+
+chat_id = get_chat_id(last_update(get_updates_json(url)))
+
+
+def check_result(data):
+    last_update_id = data['update_id']
+    cycle_update = {'update_id': 0}
+    while True:
+        cycle_update = last_update(get_updates_json(url, cycle_update['update_id']))
+        if cycle_update == None :
+            print(cycle_update)
+            time.sleep(0.5)
+            continue
+        if last_update_id == cycle_update['update_id']:
+            time.sleep(0.5)
+        else:
+            if chat_id == cycle_update['message']['chat']['id']:
+                return cycle_update
+            else:
+                send_message(chat_id, 'bot is busy')
+
 
 
 def get_last_message(update):
@@ -45,7 +77,6 @@ def send_keyboard(chat, text, keyboard):
     return response
 
 
-chat_id = get_chat_id(last_update(get_updates_json(url)))
 # last_chat_text = get_last_message(last_update(get_updates_json(url)))
 
 keyboard_alcohol = [["Вино", "Пиво", "Крепкие напитки", "Мартини"]]
@@ -56,34 +87,32 @@ keyboard_weight = [["50 ", "60", "70"], ["80", "90", "100"]]
 
 def get_state():
     send_keyboard(chat_id, 'Укажите ваш пол:', keyboard_state)
-    time.sleep(4)
-    state = get_last_message(last_update(get_updates_json(url)))
+    state = check_result(last_update(get_updates_json(url)))['message']['text']
+    # state = get_last_message(last_update(get_updates_json(url)))
     print('state = {}'.format(state))
     return state
 
 
 def get_drink():
     send_keyboard(chat_id, 'Что вы упортебляли?', keyboard_alcohol)
-    time.sleep(4)
-    alco = get_last_message(last_update(get_updates_json(url)))
+    alco = check_result(last_update(get_updates_json(url)))['message']['text']
     print('alco = {}'.format(alco))
     send_message(chat_id, ' Вижу вам нравится {}'.format(alco))
-    time.sleep(1)
     return alco
 
 
 def get_amount():
     send_keyboard(chat_id, 'Сколько грамм?', keyboard_amount)
-    time.sleep(4)
-    grams = int(get_last_message(last_update(get_updates_json(url))))
+    grams = int(check_result(last_update(get_updates_json(url)))
+                ['message']['text'])
     print('grams = {}'.format(grams))
     return grams
 
 
 def get_weight():
     send_keyboard(chat_id, 'Укажите , пожалуйтса , ваш вес', keyboard_weight)
-    time.sleep(4)
-    weight = int(get_last_message(last_update(get_updates_json(url))))
+    weight = int(check_result(last_update(get_updates_json(url)))
+                 ['message']['text'])
     print('weight = {}'.format(weight))
     return weight
 
@@ -99,10 +128,7 @@ def calculate_promile(grams, alco, state, weight):
 
 
 def send_answer(promile):
-    send_message(chat_id, 'calculating')
-    time.sleep(2)
     send_message(chat_id, 'promile is {}'.format(promile))
-    time.sleep(1)
     send_message(
         chat_id, 'По закону Украины , водить машину можно , если в крови\
          содержится +  до 0.2 промиле алкоголя ')
@@ -125,6 +151,5 @@ def main():
 while True:
     send_message(chat_id, 'Привет , бот показывает можно ли вам садиться\
          за руль . Просто введите свои парметры')
-    time.sleep(3)
     main()
     break
