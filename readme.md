@@ -3,7 +3,7 @@
     
 ***
 
-###  *This bot can check whether you are drunk enough or not to drive a car *
+###  *This bot can check whether you are drunk enough or not to drive a car. All you need is just choose given buttons *
 
  ## Examples of usage:
  ![overall](https://user-images.githubusercontent.com/72153796/120514288-ca097580-c3d5-11eb-94a1-de0b1e9498ba.png)
@@ -14,10 +14,26 @@
  
 ## Buttons
 
-![ex1](https://user-images.githubusercontent.com/72153796/120514433-f4f3c980-c3d5-11eb-8c6b-5837cd2e93d7.png)
+![overall](https://user-images.githubusercontent.com/72153796/120715654-93af2180-c4cd-11eb-9f7c-c58720372e15.png)
+
 
 ***
-![ex2](https://user-images.githubusercontent.com/72153796/120514455-f8875080-c3d5-11eb-963d-26dc16f4c733.png)
+
+![state](https://user-images.githubusercontent.com/72153796/120715669-99a50280-c4cd-11eb-9a1b-acb649c25dd9.png)
+
+***
+![type](https://user-images.githubusercontent.com/72153796/120715679-9dd12000-c4cd-11eb-8af6-3773dc7f571a.png)
+
+***
+
+![grams](https://user-images.githubusercontent.com/72153796/120715695-a4f82e00-c4cd-11eb-9348-7ec6b27c8c52.png)
+
+***
+
+![weight](https://user-images.githubusercontent.com/72153796/120715699-a6295b00-c4cd-11eb-8fe1-e71dd46adab7.png)
+
+***
+
 
 ## How can you find it?
 
