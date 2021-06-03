@@ -5,6 +5,8 @@
 
 ###  *This bot can check whether you are drunk enough or not to drive a car. All you need is just choose given buttons *
 
+***
+
  ## Examples of usage:
  ![overall](https://user-images.githubusercontent.com/72153796/120514288-ca097580-c3d5-11eb-94a1-de0b1e9498ba.png)
  
