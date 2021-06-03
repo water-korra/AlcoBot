@@ -41,6 +41,5 @@
 
 ## Contributors
 
-***
 
 Sedush Mykhaylo
